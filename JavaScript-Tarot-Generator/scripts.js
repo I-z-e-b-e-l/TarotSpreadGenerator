@@ -76,6 +76,7 @@ arcana = ["The Fool", "The Magician", "The High Priestess", "The Empress", "The 
 spread = []
 
 //take in length of spread from user
+//could change to a button selection on HTML and produde specific thread formats: past present future, etc.
 
 let numberOfCards = parseInt(prompt("How many cards would you like in the spread?"), 10)
 console.log(`This is the number of cards in the spread: ${numberOfCards}`)
@@ -88,29 +89,27 @@ console.log(`This is the number of cards in the spread: ${numberOfCards}`)
 
 
 function createSpread() {
-    while (spread.length <= numberOfCards){
+    while (spread.length < numberOfCards){
         //define a new random value each iteration
         let min = Math.ceil(0);
         let max = Math.floor(arcana.length);
         let randomValue = Math.floor(Math.random() * (max - min + 1) + min)
+        
+        card = arcana[randomValue];
 
-        // console.log(`This is the random value: ${randomValue}`)
-        card = arcana[randomValue]
-        //generate a random binary value
-        let reversed = Math.floor(Math.random() * 2)
-        console.log(`reversed = ${reversed}`)
-
+        // generate a random binary value
+        let reversed = Math.floor(Math.random() * 2);
 
         //write an if statement to attach "reversed" to the value of card
-        if (reversed === 1){
-            let card = card + " Reversed"
-            console.log(card)
-            spread.splice(0,0,card)
+        if (reversed == 1){
+            let reversedcard = (card + " Reversed");
+            spread.splice(0,0,reversedcard);
+            console.log(reversedcard)
 
-        } else if (reversed === 0) {
+        } else if (reversed == 0) {
+
+            spread.splice(0,0,card);
             console.log(card)
-            //add card to spread or you get an infinite loop
-            spread.splice(0,0,card)
         }
 
 
@@ -122,9 +121,13 @@ function createSpread() {
 
 createSpread()
 
+
+
+
+// spread.splice(0,0,arcana[0])
+
+
 console.log(spread)
-
-
   
 
 // parseInt(text, 10);
